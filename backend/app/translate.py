@@ -1,30 +1,23 @@
 import os
-from urllib import request
+import requests
 
+headers = {
+   "Authorization": f"Bearer {os.environ['HF_API_TOKEN']}",
+}
 
-HF_TOKEN = os.getenv("HF_API_TOKEN")
+def query(text , servie):
+    payload = { "inputs": text}
 
-def translate_text(text: str, direction: str):
-    if direction == "fr-en":
-        model = "Helsinki-NLP/opus-mt-fr-en"
-    elif direction == "en-fr":
-        model = "Helsinki-NLP/opus-mt-en-fr"
-    else:
-        raise ValueError("Invalid direction")
-
+    if (servie == "fr-en"):
+         model = "Helsinki-NLP/opus-mt-fr-en"
+    elif (servie == "en-fr"):
+         model = "Helsinki-NLP/opus-mt-en-fr"
+    else :
+         return "operation not fount ! please make sure you entre a right servise"
+    
     API_URL = f"https://router.huggingface.co/hf-inference/models/{model}"
+    response = requests.post(API_URL, headers=headers, json=payload)
+    result = response.json()
+    return result[0]["translation_text"]
 
-    headers = {
-        "Authorization": f"Bearer {HF_TOKEN}"
-    }
-
-    payload = {
-        "inputs": text
-    }
-
-    response = request.post(API_URL, headers=headers, json=payload, timeout=10)
-
-    if response.status_code != 200:
-        raise Exception(f"HuggingFace Error: {response.text}")
-
-    return response.json()[0]["translation_text"]
+# print(query("the text her will traduire to fr or eng" , "en-fr"))
