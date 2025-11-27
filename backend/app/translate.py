@@ -20,4 +20,4 @@ def query(text , servie):
     result = response.json()
     return result[0]["translation_text"]
 
-# print(query("the text her will traduire to fr or eng" , "en-fr"))
+# print(query("the text her will traduire to fr or eng" , "fr-e"))
