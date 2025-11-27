@@ -4,4 +4,3 @@ SQLAlchemy
 python-jose
 requests
 pytest
-

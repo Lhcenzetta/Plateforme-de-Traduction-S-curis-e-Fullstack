@@ -70,7 +70,6 @@ def login(form_data: APP.schemas.Usercheck, db: Session = Depends(get_db)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid username or password",
         )
-
     payload = {"username": user.username}
     access_token = create_access_token(payload)
 

@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 
 export default function TranslationPage() {
+
     const router = useRouter()
+    const istoken = localStorage.getItem('token');
+    if(!istoken){
+      router.push("/login")
+    }
     const [text ,setText] = useState("")
     const [service ,setService]  = useState("")
     const [traductiontext, setTraductiontext] = useState()
