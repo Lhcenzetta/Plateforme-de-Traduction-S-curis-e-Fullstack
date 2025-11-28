@@ -15,7 +15,7 @@ export default function TranslationPage() {
     const [traductiontext, setTraductiontext] = useState()
     const [loading, setLoading] = useState(false);
     const HandleTranslate = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         setLoading(true);
          const access_token = localStorage.getItem('token');
          console.log(access_token)
@@ -76,7 +76,7 @@ export default function TranslationPage() {
             {loading ? "Translating..." : "Translate"}
             </button>
           </div>
-          {loading && <p className="text-center text-secondary mt-3">Please wait...</p>}
+          {loading && <p className="text-center text-secondary mt-3">Loading...</p>}
           <div className="mt-4 p-3 border rounded bg-light">
             <h5 className="fw-bold">Translated Text:</h5>
             <p className="text-muted">{traductiontext}</p>
