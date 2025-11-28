@@ -4,3 +4,4 @@ SQLAlchemy
 python-jose
 requests
 pytest
+httpx
