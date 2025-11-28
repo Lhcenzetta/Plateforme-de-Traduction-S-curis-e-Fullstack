@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
 import os
-from APP.translate import query
+from app.translate import query
 from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import jwt, JWTError
 from sqlalchemy.orm import Session
 
-from APP.database import get_db
-from APP.models import User
-import APP.schemas
+from app.database import get_db
+from app.models import User
+import app.schemas
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "CHANGE_ME_IN_PRODUCTION")
@@ -48,8 +48,8 @@ def verify_token(cred: HTTPAuthorizationCredentials = Depends(bearer_scheme)):
     return decoded
 
 
-@router.post("/register", response_model=APP.schemas.UserCreat)
-def register(user: APP.schemas.UserCreat, db: Session = Depends(get_db)):
+@router.post("/register", response_model=app.schemas.UserCreat)
+def register(user: app.schemas.UserCreat, db: Session = Depends(get_db)):
     new_user = User(
         username=user.username,
         full_name=user.full_name,
@@ -63,7 +63,7 @@ def register(user: APP.schemas.UserCreat, db: Session = Depends(get_db)):
 
 
 @router.post("/login")
-def login(form_data: APP.schemas.Usercheck, db: Session = Depends(get_db)):
+def login(form_data: app.schemas.Usercheck, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == form_data.username).first()
     if not user or user.password != form_data.password:
         raise HTTPException(

@@ -7,12 +7,12 @@ from sqlalchemy.orm import sessionmaker
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "APP")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "app")))
 
 os.environ.setdefault("HF_API_TOKEN", "test_dummy_token")
 
-from APP.main import app
-from APP.database import Base, get_db
+from app.main import app
+from app.database import Base, get_db
 
 
 TEST_DATABASE_URL = "sqlite:///./test_db.sqlite"

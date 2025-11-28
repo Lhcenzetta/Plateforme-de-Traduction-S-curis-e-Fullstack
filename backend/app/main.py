@@ -1,9 +1,10 @@
-from fastapi import FastAPI,Depends
-from sqlalchemy.orm import session
-from APP.models import User
-import APP.auth
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from APP.database import get_db, Base ,engine, SessionLocal
+from sqlalchemy.orm import Session
+
+from app import auth
+from app.database import Base, engine, get_db
+from app.models import User
 
 Base.metadata.create_all(bind = engine)
 
@@ -21,11 +22,9 @@ app.add_middleware(
     allow_headers=["*"],   
 )
 @app.get("/hey")
-def get_db(db: session = Depends(get_db)):
+def list_users(db: Session = Depends(get_db)):
     return db.query(User).all()
 
-app.include_router(APP.auth.router)  
-
-
+app.include_router(auth.router)
 
 
