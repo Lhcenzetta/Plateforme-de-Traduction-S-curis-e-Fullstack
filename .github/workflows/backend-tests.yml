@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.10, 3.11]
+        # Quote versions so YAML treats them as strings (unquoted 3.10 can be
+        # interpreted as the float 3.1 which results in actions/setup-python
+        # trying to fetch Python 3.1). Quoting fixes the "version not found"
+        # error.
+        python-version: ["3.10", "3.11"]
 
     env:
       HF_API_TOKEN: test_dummy_token
@@ -25,6 +29,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          # Use the built-in pip cache to speed up installs
+          cache: "pip"
 
       - name: Cache pip
         uses: actions/cache@v4
