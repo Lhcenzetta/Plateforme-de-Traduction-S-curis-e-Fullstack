@@ -72,7 +72,6 @@ TOKEN=$(curl -s -X POST http://127.0.0.1:8000/ha/login \
 curl -X POST "http://127.0.0.1:8000/ha/translate?Text=Hello&service=en-fr" \
   -H "Authorization: Bearer $TOKEN"
 ```
-
 ## Tests
 ```bash
 cd backend
