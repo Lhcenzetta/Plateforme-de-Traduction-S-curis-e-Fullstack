@@ -1,6 +1,5 @@
 # Plateforme de Traduction Securisee (Fullstack)
 Application fullstack de traduction qui combine un backend FastAPI securise (JWT) et un frontend Next.js. Les textes sont traduits via l'API Hugging Face Inference (models Helsinki-NLP fr/en). L'authentification protege l'acces a la traduction et les tests backend couvrent les parcours principaux.
-
 ## Fonctionnalites
 - Authentification JWT (inscription, connexion) avec FastAPI.
 - Traduction fr <> en en s'appuyant sur Hugging Face Inference API.
