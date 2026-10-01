@@ -6,7 +6,6 @@ Application fullstack de traduction qui combine un backend FastAPI securise (JWT
 - Interface Next.js/React avec formulaires (login, registre, traduction).
 - Persistance SQLite et Docker Compose pour lancer frontend + backend.
 - Tests backend (pytest + TestClient) pour auth et route protegee.
-
 ## Stack
 - Backend : FastAPI, SQLAlchemy, python-jose, requests, SQLite.
 - Frontend : Next.js 16 (App Router), React 19, Bootstrap 5.
